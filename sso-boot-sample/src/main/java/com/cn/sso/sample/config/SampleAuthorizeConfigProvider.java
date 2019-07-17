@@ -1,6 +1,6 @@
 package com.cn.sso.sample.config;
 
-import com.cn.sso.client.authorize.AuthorizeConfigProvider;
+import com.cn.sso.server.authorize.AuthorizeConfigProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

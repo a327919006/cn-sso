@@ -21,6 +21,7 @@ public class LoginServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("【用户登录】username={}", username);
         SysUser sysUser = new SysUser();
         sysUser.setSysUserId("11111111111");
         sysUser.setUserName(username);

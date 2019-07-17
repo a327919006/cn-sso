@@ -51,6 +51,7 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
                 .passwordEncoder(passwordEncoder)
+                .tokenKeyAccess("isAuthenticated()")
                 .checkTokenAccess("isAuthenticated()")
                 .allowFormAuthenticationForClients();
     }
@@ -60,13 +61,13 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
         InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
         if (ArrayUtils.isNotEmpty(securityProperties.getOauth2().getClients())) {
             for (OAuth2ClientPropertis client : securityProperties.getOauth2().getClients()) {
-                log.info("clientId={}", client.getClientId());
+                log.info("【授权应用】clientId={}", client.getClientId());
                 builder.withClient(client.getClientId())
                         .secret(passwordEncoder.encode(client.getClientSecret()))
                         .accessTokenValiditySeconds(client.getAccessTokenValiditySeconds())
                         .refreshTokenValiditySeconds(client.getRefreshTokenValiditySeconds())
                         .authorizedGrantTypes("password", "refresh_token")
-                        .scopes("all", "read", "write")
+                        .scopes("all")
                         .autoApprove(true);
             }
         }

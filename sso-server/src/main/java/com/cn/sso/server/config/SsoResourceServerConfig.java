@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableResourceServer
 public class SsoResourceServerConfig extends ResourceServerConfigurerAdapter {
+
     @Autowired
     protected AuthenticationSuccessHandler authenticationSuccessHandler;
     @Autowired

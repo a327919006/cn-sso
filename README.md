@@ -1,37 +1,16 @@
 # cn-sso
 
 #### 介绍
-cn-sso，项目开发中
+cn-sso，项目整合SpringSecurity、SpringSecurityOauth2、SpringSecurityJwt，实现通用认证、授权模块。
 
-#### 软件架构
-软件架构说明
+#### 登录流程
+1. 认证中心发放clientId和Secret给网关（或业务模块）
+2. 网关收到客户端登录请求（账号、密码）
+3. 网关使用password模式调用认证中心token接口
+4. 认证中心验证账号、密码信息，返回JWT
 
+#### 刷新Token流程
+1. 网关收到客户端刷新Token请求
+2. 网关使用refresh_token模式调用认证中心token接口
+3. 认证中心验证token信息，返回新JWT
 
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

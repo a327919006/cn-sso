@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gitee.nuliing</groupId>
+    <artifactId>cn-sso</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <modules>
+        <module>sso-boot-sample</module>
+        <module>sso-server</module>
+        <module>sso-core</module>
+        <module>sso-client</module>
+        <module>sample-server</module>
+        <module>sample-client</module>
+    </modules>
+
+    <properties>
+        <!-- maven -->
+        <jdk.version>1.8</jdk.version>
+        <jdk.encoding>UTF-8</jdk.encoding>
+
+        <!--spring boot-->
+        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+        <spring-security-oauth2.version>2.3.6.RELEASE</spring-security-oauth2.version>
+        <spring-security-jwt.version>1.0.10.RELEASE</spring-security-jwt.version>
+
+        <!-- main -->
+        <lombok.versioin>1.18.6</lombok.versioin>
+        <hutool.version>4.5.3</hutool.version>
+
+        <!-- common tools-->
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+
+        <!-- plugins -->
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>2.3.1</maven-jar-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--models-->
+            <dependency>
+                <groupId>com.gitee.nuliing</groupId>
+                <artifactId>sso-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gitee.nuliing</groupId>
+                <artifactId>sso-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gitee.nuliing</groupId>
+                <artifactId>sso-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Spring Boot依赖配置-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--security-->
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.versioin}</version>
+            </dependency>
+            <!--commons-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <resources>
+            <resource>
+                <!--配置文件路径  -->
+                <directory>src/main/resources</directory> <!--这里对应项目存放配置文件的目录-->
+                <!--开启filtering功能  -->
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>dev/**</exclude>
+                    <exclude>test/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/${profileActive}</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <!-- Java编译插件 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${jdk.encoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Jar打包插件 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <outputDirectory>target</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://gitee.com/NuLiing/cn-sso</url>
+        <connection>https://gitee.com/NuLiing/cn-sso.git</connection>
+        <developerConnection>https://gitee.com/NuLiing/cn-sso</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>ChenNan</name>
+            <email>327919006@qq.com</email>
+            <url>https://gitee.com/NuLiing</url>
+        </developer>
+    </developers>
+</project>

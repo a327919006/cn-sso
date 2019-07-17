@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurity
 /**
  * @author Chen Nan
  */
-@Configuration
+@Configuration("clientResourceServerConfig")
 @EnableResourceServer
 public class SsoResourceServerConfig extends ResourceServerConfigurerAdapter {
 

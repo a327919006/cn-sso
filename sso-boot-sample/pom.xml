@@ -17,10 +17,10 @@
             <groupId>com.gitee.nuliing</groupId>
             <artifactId>sso-server</artifactId>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>com.gitee.nuliing</groupId>
             <artifactId>sso-client</artifactId>
-        </dependency>-->
+        </dependency>
 
         <!-- spring boot -->
         <dependency>

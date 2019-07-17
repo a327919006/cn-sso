@@ -25,15 +25,17 @@ public class SsoAuthorizeConfigManager implements AuthorizeConfigManager {
         boolean existAnyRequestConfig = false;
         String existAnyRequestConfigName = null;
 
-        for (AuthorizeConfigProvider authorizeConfigProvider : authorizeConfigProviders) {
-            log.info("【authorizeConfigProvider】" + authorizeConfigProvider);
-            boolean currentIsAnyRequestConfig = authorizeConfigProvider.config(config);
-            if (existAnyRequestConfig && currentIsAnyRequestConfig) {
-                throw new RuntimeException("重复的anyRequest配置:" + existAnyRequestConfigName + ","
-                        + authorizeConfigProvider.getClass().getSimpleName());
-            } else if (currentIsAnyRequestConfig) {
-                existAnyRequestConfig = true;
-                existAnyRequestConfigName = authorizeConfigProvider.getClass().getSimpleName();
+        if (authorizeConfigProviders != null) {
+            for (AuthorizeConfigProvider authorizeConfigProvider : authorizeConfigProviders) {
+                log.info("【authorizeConfigProvider】" + authorizeConfigProvider);
+                boolean currentIsAnyRequestConfig = authorizeConfigProvider.config(config);
+                if (existAnyRequestConfig && currentIsAnyRequestConfig) {
+                    throw new RuntimeException("重复的anyRequest配置:" + existAnyRequestConfigName + ","
+                            + authorizeConfigProvider.getClass().getSimpleName());
+                } else if (currentIsAnyRequestConfig) {
+                    existAnyRequestConfig = true;
+                    existAnyRequestConfigName = authorizeConfigProvider.getClass().getSimpleName();
+                }
             }
         }
 

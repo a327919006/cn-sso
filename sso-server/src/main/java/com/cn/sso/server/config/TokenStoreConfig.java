@@ -1,6 +1,6 @@
 package com.cn.sso.server.config;
 
-import com.cn.sso.core.config.properties.SecurityProperties;
+import com.cn.sso.server.config.properties.SsoServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class TokenStoreConfig {
 
     @Autowired
-    private SecurityProperties securityProperties;
+    private SsoServerProperties securityProperties;
 
     @Bean
     public TokenStore jwtTokenStore() {

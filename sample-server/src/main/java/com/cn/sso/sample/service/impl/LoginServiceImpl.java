@@ -11,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
+ * 自定义登录服务
+ * 返回实现UserDetails接口的对象即可，本示例自定义了SysUser类
+ *
  * @author Chen Nan
  */
 @Component
@@ -22,10 +25,12 @@ public class LoginServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("【用户登录】username={}", username);
+        // 真实项目应该从数据库中获取用户信息，然后校验密码是否正确
         SysUser sysUser = new SysUser();
         sysUser.setSysUserId("11111111111");
         sysUser.setUserName(username);
         sysUser.setUserPwd(passwordEncoder.encode("123456"));
+        sysUser.setUserStatus((byte) 1);
         sysUser.setAuthorities(AuthorityUtils.createAuthorityList("admin"));
         return sysUser;
     }

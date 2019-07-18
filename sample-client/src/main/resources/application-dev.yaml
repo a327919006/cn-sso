@@ -10,3 +10,7 @@ security:
       client-id: sample
       client-secret: 123456
 
+cn:
+  sso:
+    oauth2:
+      server-uri: http://localhost:10083/oauth/token

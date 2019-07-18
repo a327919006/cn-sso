@@ -1,7 +1,7 @@
 package com.cn.sso.server.config;
 
-import com.cn.sso.core.config.properties.OAuth2ClientPropertis;
-import com.cn.sso.core.config.properties.SecurityProperties;
+import com.cn.sso.server.config.properties.SsoServerClientProperties;
+import com.cn.sso.server.config.properties.SsoServerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private SecurityProperties securityProperties;
+    private SsoServerProperties securityProperties;
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -60,7 +60,7 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
         if (ArrayUtils.isNotEmpty(securityProperties.getOauth2().getClients())) {
-            for (OAuth2ClientPropertis client : securityProperties.getOauth2().getClients()) {
+            for (SsoServerClientProperties client : securityProperties.getOauth2().getClients()) {
                 log.info("【授权应用】clientId={}", client.getClientId());
                 builder.withClient(client.getClientId())
                         .secret(passwordEncoder.encode(client.getClientSecret()))

@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan({
         "com.cn.sso.sample",
-        "com.cn.sso.core",
         "com.cn.sso.server",
         "com.cn.sso.client"
 })

@@ -1,6 +1,5 @@
 package com.cn.sso.sample.service.impl;
 
-import cn.hutool.json.JSONUtil;
 import com.cn.sso.sample.service.RbacService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -10,6 +9,8 @@ import org.springframework.util.AntPathMatcher;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 自定义权限校验服务
+ *
  * @author Chen Nan
  */
 @Component
@@ -20,10 +21,8 @@ public class RbacServiceImpl implements RbacService {
 
     @Override
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
-        log.info("【hasPermission】");
+        log.info("【校验权限】");
         Object principal = authentication.getPrincipal();
-        log.info("authentication={}", JSONUtil.toJsonStr(authentication));
-        log.info("principal={}", JSONUtil.toJsonStr(principal));
 
         boolean hasPermission = false;
 

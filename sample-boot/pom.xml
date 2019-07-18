@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sso-boot-sample</artifactId>
+    <artifactId>sample-boot</artifactId>
 
     <dependencies>
         <!--model-->

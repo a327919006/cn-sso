@@ -23,7 +23,7 @@ public class SampleAuthorizeConfigProvider implements AuthorizeConfigProvider {
          * 示例一：指定某些url无需登录即可访问，如注册、忘记密码等
          */
         /*config.antMatchers(
-                "/sso/user/login"
+                "/user/register"
         ).permitAll();*/
 
         /**

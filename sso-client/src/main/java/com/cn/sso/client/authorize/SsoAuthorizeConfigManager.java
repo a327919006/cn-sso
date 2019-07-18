@@ -27,7 +27,7 @@ public class SsoAuthorizeConfigManager implements AuthorizeConfigManager {
 
         if (authorizeConfigProviders != null) {
             for (AuthorizeConfigProvider authorizeConfigProvider : authorizeConfigProviders) {
-                log.info("【authorizeConfigProvider】" + authorizeConfigProvider);
+                log.info("【授权配置】" + authorizeConfigProvider);
                 boolean currentIsAnyRequestConfig = authorizeConfigProvider.config(config);
                 if (existAnyRequestConfig && currentIsAnyRequestConfig) {
                     throw new RuntimeException("重复的anyRequest配置:" + existAnyRequestConfigName + ","

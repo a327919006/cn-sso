@@ -9,10 +9,9 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>sso-boot-sample</module>
         <module>sso-server</module>
-        <module>sso-core</module>
         <module>sso-client</module>
+        <module>sample-boot</module>
         <module>sample-server</module>
         <module>sample-client</module>
     </modules>
@@ -42,11 +41,6 @@
     <dependencyManagement>
         <dependencies>
             <!--models-->
-            <dependency>
-                <groupId>com.gitee.nuliing</groupId>
-                <artifactId>sso-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.gitee.nuliing</groupId>
                 <artifactId>sso-server</artifactId>
